@@ -1,12 +1,12 @@
 services:
   frontend:
     build: .
-    command: pnpm dev
+    command: pnpm --filter app dev
     develop:
       watch:
         - action: sync
           path: app
-          target: /app
+          target: /walking/app
           ignore:
             - node_modules
 

@@ -9,17 +9,16 @@ RUN corepack enable
 
 USER node
 
-WORKDIR /app
+WORKDIR /walking
 
 FROM base AS deps
 
-COPY app/package.json app/pnpm-lock.yaml ./
+COPY --chown=node package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+COPY --chown=node app app
 
-RUN pnpm fetch
-RUN pnpm i -r --offline --frozen-lockfile
-
-COPY --chown=node app /app
+RUN pnpm --filter app fetch
+RUN pnpm --filter app i -r --offline --frozen-lockfile
 
 EXPOSE 5173
 
-CMD ["pnpm", "dev"]
+CMD ["pnpm", "--filter", "app", "dev"]
