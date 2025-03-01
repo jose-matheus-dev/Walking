@@ -6,7 +6,9 @@ settings:
 
 importers:
 
-  .:
+  .: {}
+
+  app:
     dependencies:
       react:
         specifier: 19.0.0

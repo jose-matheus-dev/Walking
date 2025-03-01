@@ -1,0 +1,15 @@
+{
+  "name": "walking",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "app",
+    "api"
+  ],
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "esbuild"
+    ]
+  }
+}
