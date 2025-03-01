@@ -1,0 +1,27 @@
+services:
+  frontend:
+    build: .
+    command: pnpm dev
+    develop:
+      watch:
+        - action: sync
+          path: app
+          target: /app
+          ignore:
+            - node_modules
+
+        - action: rebuild
+          path: app/package.json
+        - action: rebuild
+          path: Dockerfile
+        - action: rebuild
+          path: .dockerignore
+
+    ports:
+      - 5173:5173
+
+    volumes:
+      - pnpm_cache:/pnpm/store
+
+volumes:
+  pnpm_cache:
