@@ -1,6 +1,10 @@
 services:
-  frontend:
-    build: .
+  app:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
     command: pnpm --filter app dev
     develop:
       watch:
@@ -18,10 +22,4 @@ services:
           path: .dockerignore
 
     ports:
-      - 5173:5173
-
-    volumes:
-      - pnpm_cache:/pnpm/store
-
-volumes:
-  pnpm_cache:
+      - "5173:5173"
