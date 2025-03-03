@@ -1,0 +1,51 @@
+.touch {
+  width: max(var(--dx), var(--dy), 10vmin);
+  height: 10vmin;
+  position: absolute;
+  transform-origin: 5vmin;
+  top: var(--y);
+  left: var(--x);
+  rotate: var(--rot);
+}
+
+.touch::before {
+  content: '';
+  display: block;
+  opacity: 0;
+  width: 10vmin;
+  height: 10vmin;
+  outline: 0.75vmin solid #000;
+  border-radius: 20px;
+}
+
+.shown::before {
+  animation: size calc(500ms + var(--dt) / 0.8) ease-in-out forwards;
+}
+@keyframes size {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    width: 10vmin;
+  }
+  30% {
+    width: 18vmin;
+    margin-left: 0px;
+  }
+  65% {
+    margin-left: calc(100% - 18vmin);
+  }
+  70% {
+    width: 18vmin;
+    margin-left: auto;
+  }
+  90% {
+    width: 10vmin;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    margin-left: auto;
+  }
+}

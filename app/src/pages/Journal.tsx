@@ -1,12 +1,16 @@
 import { Layout } from '@/components';
-import { useApp } from '@/hooks';
+import { Touch } from '@/components/Widgets';
+import { useApp, useGesture } from '@/hooks';
 
 export function Journal() {
   const { view, isAnimating } = useApp().app;
+  const { data, gesture } = useGesture();
 
   return (
     <>
-      <Layout className={`${view}${isAnimating ? ' animating' : ''}`} title="JOURNAL"></Layout>
+      <Layout title="JOURNAL" className={`${view}${isAnimating ? ' animating' : ''}`} {...gesture}>
+        <Touch data={data} />
+      </Layout>
     </>
   );
 }
