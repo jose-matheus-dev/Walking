@@ -1,0 +1,115 @@
+.day-picker {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+
+  width: 88%;
+  height: 48px;
+  margin: 0 0 0 -44px;
+
+  overflow: auto hidden;
+
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+}
+.day {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 68px;
+  height: 48px;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  cursor: pointer;
+  text-align: center;
+}
+.day.active {
+  color: #354254;
+  z-index: 1;
+}
+
+.month-picker {
+  width: max-content;
+  height: 18px;
+  position: absolute;
+  top: 198px;
+  left: 16px;
+  right: 0;
+  margin: auto;
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+}
+
+.month-picker input[type='month'] {
+  display: block;
+  height: 18px;
+  margin-right: -20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+}
+input[type='month']::-webkit-datetime-edit-fields-wrapper {
+  cursor: pointer;
+}
+
+.detail:not(.animating) {
+  padding: 22px 0 0 0;
+}
+.visual:not(.animating) .day-picker {
+  width: 322px;
+  height: 48px;
+  transform: translate(96px, 0) scale(2);
+  transform-origin: top right;
+}
+
+.visual:not(.animating) .day-picker:not(:hover) .day:not(.active) {
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+}
+
+.visual .day-picker {
+  translate: -181px;
+}
+
+.visual .month-picker {
+  transform: translate(-138px, 32px) scale(1.25);
+}
+
+.animating .day-picker {
+  transition: translate 1s ease-in-out;
+  height: 96px;
+}
+.animating .day {
+  margin: -4px 0 0 0;
+}
+
+.visual.animating .day-picker .day.active {
+  transition: transform 1s ease-in-out;
+  transform: translate(42px, 2px) scale(2);
+}
+.detail.animating .day-picker .day.active {
+  animation: zoomOut 1s ease-in-out;
+}
+.visual.animating .day-picker .day.active + .day {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+}
+.detail.animating .day-picker .day.active + .day {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes zoomOut {
+  from {
+    transform: translate(42px, 2px) scale(2);
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+}

@@ -1,5 +1,5 @@
 import { Layout } from '@/components';
-import { Touch } from '@/components/widgets';
+import { DayPicker, Touch } from '@/components/widgets';
 import { useApp, useGesture } from '@/hooks';
 
 export function Journal() {
@@ -8,8 +8,11 @@ export function Journal() {
 
   return (
     <>
-      <Layout title="JOURNAL" className={`${view}${isAnimating ? ' animating' : ''}`} {...gesture}>
-        <Touch data={data} />
+      <Layout title="JOURNAL" className={`${view}${isAnimating ? ' animating' : ''}`}>
+        <DayPicker />
+        <section className="touch-area" {...gesture}>
+          <Touch data={data} />
+        </section>
       </Layout>
     </>
   );
